@@ -1,6 +1,7 @@
 package com.comlu.projecthj;
 
 import java.awt.Canvas;
+import java.awt.image.BufferStrategy;
 
 import com.comlu.projecthj.window.Window;
 
@@ -54,7 +55,7 @@ public class Game extends Canvas implements Runnable {
 			}
 			render();
 			frames++;
-
+			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				frames = 0;
@@ -64,7 +65,13 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-
+		int numBuffers = 3;
+		
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(numBuffers);
+			return;
+		}
 	}
 
 	public void tick() {
