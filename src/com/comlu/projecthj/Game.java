@@ -5,9 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.comlu.projecthj.Objects.Box;
+import com.comlu.projecthj.handlers.Handler;
 import com.comlu.projecthj.window.Window;
 
 public class Game extends Canvas implements Runnable {
+	
 	private static final long serialVersionUID = 1L;
 
 	private static int MAJOR_VERSION = 1, BUILD_VERSION = 1, MINOR_VERSION = 0;
@@ -19,12 +22,17 @@ public class Game extends Canvas implements Runnable {
 
 	private boolean isRunning = false;
 	private Thread thread;
+	public Handler handler;
 
 	private static int width = 960, height = width / 16 * 9;
 	
 	public Game() {
 		new Window(width, height, TITLE, this);
 		start();
+		
+		handler = new Handler();
+		
+		handler.addObject(new Box(100, 100));	
 	}
 
 	public void start() {
@@ -61,7 +69,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 			if (System.currentTimeMillis() - timer > 1000) {
-				System.out.println("isRunning" + ": " + isRunning+ " : " + frames);
+				System.out.println("Frames: " + frames + " " + isRunning);
 				timer += 1000;
 				frames = 0;
 			}
@@ -83,12 +91,14 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
 		
+		handler.render(g);
+		
 		g.dispose();
 		bs.show();
 	}
 
 	public void tick() {
-
+		handler.tick();
 	}
 
 	public static void main(String[] args) {
