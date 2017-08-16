@@ -7,8 +7,43 @@ import com.comlu.projecthj.window.Window;
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
+	private static int 
+			MAJOR_VERSION = 1, 
+			BUILD_VERSION = 0, 
+			MINOR_VERSION = 0;
+	
+	private static String 
+			BUILD = "Alpha";
+	private static String 
+			NAME = "Wizard Game";
+	
+	private static String 
+			TITLE = NAME + " " + 
+					BUILD + "_" + 
+					MAJOR_VERSION + "." + 
+					BUILD_VERSION + "." + 
+					MINOR_VERSION;
+	
+	private boolean isRunning = false;
+	private Thread thread;
+	
 	public Game() { 
-		new Window(800, 600, "Wizard Game", this); 
+		new Window(800, 600, TITLE, this); 
+	}
+	
+	public void start() {
+		isRunning = true;
+		thread = new Thread(this);
+		thread.start();
+	}
+	
+	public void stop() {
+		isRunning = false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void run() {	
