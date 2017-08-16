@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable {
 	private static String BUILD = "Alpha";
 	private static String NAME = "Wizard Game";
 
-	private static String TITLE = NAME + " " + BUILD + "_" + MAJOR_VERSION + "." + BUILD_VERSION + "." + MINOR_VERSION;
+	private static String TITLE = NAME + " " + BUILD + "_" + MAJOR_VERSION + "." + MINOR_VERSION + "." + BUILD_VERSION;
 
 	private boolean isRunning = false;
 	private Thread thread;
@@ -34,8 +34,8 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
-		
-		handler.addObject(new Wizard(100, 100, ID.Player, handler));
+
+        handler.addObject(new Wizard(100,100, ID.Player,handler));
 	}
 
 	public void start() {
