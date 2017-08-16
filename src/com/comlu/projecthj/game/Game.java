@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import com.comlu.projecthj.game.objects.Box;
 import com.comlu.projecthj.handlers.Handler;
+import com.comlu.projecthj.id.ID;
 import com.comlu.projecthj.window.Window;
 
 public class Game extends Canvas implements Runnable {
@@ -32,7 +33,7 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-		handler.addObject(new Box(100, 100));
+		handler.addObject(new Box(100, 100, ID.Block));
 	}
 
 	public void start() {

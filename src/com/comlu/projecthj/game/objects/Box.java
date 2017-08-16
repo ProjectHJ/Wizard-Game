@@ -5,11 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import com.comlu.projecthj.game.GameObject;
+import com.comlu.projecthj.id.ID;
 
 public class Box extends GameObject {
 
-	public Box(int x, int y) {
-		super(x, y);
+	public Box(int x, int y, ID id) {
+		super(x, y, id);
 	}
 
 	public void tick() {	
