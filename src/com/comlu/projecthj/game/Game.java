@@ -4,7 +4,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
+import com.comlu.projecthj.ImageLoader.BufferedImageLoader;
 import com.comlu.projecthj.game.objects.entity.player.Wizard;
 import com.comlu.projecthj.handlers.Handler;
 import com.comlu.projecthj.handlers.KeyInput;
@@ -25,6 +27,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean isRunning = false;
 	private Thread thread;
 	public Handler handler;
+	
+	private BufferedImage level = null;
 
 	private static int width = 960, height = width / 16 * 9;
 	
@@ -34,6 +38,9 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
+		
+		BufferedImageLoader loader = new BufferedImageLoader();
+		level = loader.loadImage("/levels/level_1.png");
 
         handler.addObject(new Wizard(100,100, ID.Player,handler));
 	}
