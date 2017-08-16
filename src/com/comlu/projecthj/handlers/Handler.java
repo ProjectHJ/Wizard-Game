@@ -7,36 +7,36 @@ import com.comlu.projecthj.game.GameObject;
 
 public class Handler {
 	
-	LinkedList<GameObject> objects = new LinkedList<GameObject>();
+	LinkedList<GameObject> object = new LinkedList<GameObject>();
 	
 	private boolean up = false, down = false, right = false, left = false;
 		
 	public void tick() {
-		for(int i = 0; i < objects.size(); i++) {
-			GameObject tempObj = objects.get(i);
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObj = object.get(i);
 
 			tempObj.tick();
 		}
 	}
 	
 	public void render(Graphics g) {
-		for(int i = 0; i < objects.size(); i++) {
-			GameObject tempObj = objects.get(i);
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObj = object.get(i);
 			
 			tempObj.render(g);
 		}
 	}
 	
 	public void addObject(GameObject tempObj) {
-		objects.add(tempObj);
-		System.out.println("Adding Objects : " + objects.size());
+		object.add(tempObj);
+		System.out.println("Adding Objects : " + object.size());
 	}
 	
 	public void remObject(GameObject tempObj) {
-		objects.remove(tempObj);
-		System.out.println("Removing Objects : " + objects.size());
+		object.remove(tempObj);
+		System.out.println("Removing Objects : " + object.size());
 	}
-
+	
 	public boolean isUp() {
 		return up;
 	}
