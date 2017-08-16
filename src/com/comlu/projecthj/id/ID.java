@@ -1,4 +1,4 @@
-package com.comlu.projecthj.game;
+package com.comlu.projecthj.id;
 
 public enum ID {
 	Player(),
