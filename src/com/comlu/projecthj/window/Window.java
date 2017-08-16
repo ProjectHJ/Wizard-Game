@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import com.comlu.projecthj.Game;
+import com.comlu.projecthj.game.Game;
 
 public class Window {
 	

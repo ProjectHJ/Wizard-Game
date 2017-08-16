@@ -1,4 +1,4 @@
-package com.comlu.projecthj;
+package com.comlu.projecthj.game;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

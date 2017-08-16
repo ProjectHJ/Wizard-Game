@@ -1,11 +1,11 @@
-package com.comlu.projecthj;
+package com.comlu.projecthj.game;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import com.comlu.projecthj.Objects.Box;
+import com.comlu.projecthj.game.objects.Box;
 import com.comlu.projecthj.handlers.Handler;
 import com.comlu.projecthj.window.Window;
 
@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		
-		handler.addObject(new Box(100, 100));	
+		handler.addObject(new Box(100, 100));
 	}
 
 	public void start() {
@@ -64,6 +64,7 @@ public class Game extends Canvas implements Runnable {
 			lastTime = now;
 			while (delta >= 1) {
 				tick();
+
 				delta--;
 			}
 			render();
