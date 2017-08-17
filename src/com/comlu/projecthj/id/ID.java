@@ -5,5 +5,7 @@ public enum ID {
 	Block(),
 	Crate(),
 	Bullet(),
+	Wall_Connected_Up(),
+	Wall_Connected_Right(),
 	Enemy();
 }

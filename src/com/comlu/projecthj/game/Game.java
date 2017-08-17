@@ -3,21 +3,24 @@ package com.comlu.projecthj.game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import com.comlu.projecthj.ImageLoader.BufferedImageLoader;
+import com.comlu.projecthj.game.objects.Block;
+import com.comlu.projecthj.game.objects.WallConnectedRight;
+import com.comlu.projecthj.game.objects.WallConnectedUp;
+import com.comlu.projecthj.game.objects.camera.Camera;
 import com.comlu.projecthj.game.objects.entity.player.Wizard;
-import com.comlu.projecthj.handlers.Handler;
-import com.comlu.projecthj.handlers.KeyInput;
 import com.comlu.projecthj.id.ID;
 import com.comlu.projecthj.window.Window;
 
 public class Game extends Canvas implements Runnable {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	private static int MAJOR_VERSION = 1, BUILD_VERSION = 1, MINOR_VERSION = 0;
+	private static int MAJOR_VERSION = 1, BUILD_VERSION = 1, MINOR_VERSION = 0, FRAMES = 0;
 
 	private static String BUILD = "Alpha";
 	private static String NAME = "Wizard Game";
@@ -26,23 +29,26 @@ public class Game extends Canvas implements Runnable {
 
 	private boolean isRunning = false;
 	private Thread thread;
-	public Handler handler;
-	
+	private Handler handler;
+	private Camera camera;
+
 	private BufferedImage level = null;
 
-	private static int width = 960, height = width / 16 * 9;
-	
+	private static float width = 960, height = 540;
+
+
 	public Game() {
-		new Window(width, height, TITLE, this);
+		new Window((int) width, (int) height, TITLE, this);
 		start();
-		
+
 		handler = new Handler();
+		camera = new Camera(0, 0);
 		this.addKeyListener(new KeyInput(handler));
-		
+
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/levels/level_1.png");
 
-        handler.addObject(new Wizard(100,100, ID.Player,handler));
+		loadLevel(level);
 	}
 
 	public void start() {
@@ -80,7 +86,10 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 			if (System.currentTimeMillis() - timer > 1000) {
-				System.out.println("Frames: " + frames + " " + isRunning);
+				System.out.println("Frames: " + frames + " Running: " + isRunning);
+				if (frames >= 60)
+					frames = 60;
+				FRAMES = frames;
 				timer += 1000;
 				frames = 0;
 			}
@@ -90,28 +99,74 @@ public class Game extends Canvas implements Runnable {
 
 	public void render() {
 		int numBuffers = 3;
-		
+
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
 			this.createBufferStrategy(numBuffers);
 			return;
 		}
-		
+
 		Graphics g = bs.getDrawGraphics();
-		
+		Graphics2D g2d = (Graphics2D) g;
+
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
+		g.fillRect(0, 0, (int) width, (int) height);
 		
+		g2d.translate(-camera.getX(), -camera.getY());
+
 		handler.render(g);
+
+		g2d.translate(camera.getX(), camera.getY());
 		
 		g.dispose();
 		bs.show();
 	}
-
+	
 	public void tick() {
+		for (int i = 0; i < handler.object.size(); i++) {
+			if (handler.object.get(i).getId() == ID.Player) {
+				camera.tick(handler.object.get(i));
+			}
+		}
+		
 		handler.tick();
 	}
 
+	private void loadLevel(BufferedImage image) {
+		int w = image.getWidth();
+		int h = image.getHeight();
+
+		for (int xx = 0; xx < w; xx++) {
+			for (int yy = 0; yy < h; yy++) {
+				int pixel = image.getRGB(xx, yy);
+				int RED = (pixel >> 16) & 0xff;
+				int GREEN = (pixel >> 8) & 0xff;
+				int BLUE = (pixel) & 0xff;
+
+				switch (RED) {
+				case 255:
+					handler.addObject(new Block(xx * 32, yy * 32, ID.Block));
+					break;
+				case 190:
+					handler.addObject(new WallConnectedRight(xx * 32, yy * 32, ID.Wall_Connected_Right));
+					break;
+				case 128:
+					handler.addObject(new WallConnectedUp(xx * 32, yy * 32, ID.Wall_Connected_Up));
+					break;
+				}
+				
+				switch (GREEN) {
+				
+				}
+				
+				switch (BLUE) {
+				case 255:
+					handler.addObject(new Wizard(xx * 32, yy * 32, ID.Player, handler));
+				}
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		new Game();
 	}

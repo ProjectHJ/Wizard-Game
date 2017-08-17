@@ -1,9 +1,7 @@
-package com.comlu.projecthj.handlers;
+package com.comlu.projecthj.game;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
-
-import com.comlu.projecthj.game.GameObject;
 
 public class Handler {
 	

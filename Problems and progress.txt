@@ -1,0 +1,27 @@
+https://www.youtube.com/watch?v=YdVTyWDHhWM
+Camera
+Error in Game.java - 
+
+	public void tick() {
+		for (int i = 0; i < handler.object.size(); i++) {
+			if (handler.object.get(i).getId() == ID.Player) {
+				camera.tick(handler.object.get(i));
+			}
+		}
+		
+		handler.tick();
+	}
+	
+handler.object.*;
+object keeps erroring and i dont how to fix it, it must be a problem with the visibility of the Handler class
+	but whenever i change the LinkedList in Handler.java to public it seems like it breaks everything.
+	
+	
+Camera does not work like it should when i do make the LinkedList public so I don't know if those two are related.
+Will continue series when I find a fix this problem.
+
+
+Solved: Anytime I reference the LinkedList that referencing class needs to be in the same package as Handler.java
+ as it can't find the Handler.java.
+ 
+ Solved: Camera is now working. Player was moving too slow for the camera. Fixed!

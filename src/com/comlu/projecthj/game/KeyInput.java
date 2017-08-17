@@ -1,9 +1,8 @@
-package com.comlu.projecthj.handlers;
+package com.comlu.projecthj.game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.comlu.projecthj.game.GameObject;
 import com.comlu.projecthj.id.ID;
 
 public class KeyInput extends KeyAdapter {
