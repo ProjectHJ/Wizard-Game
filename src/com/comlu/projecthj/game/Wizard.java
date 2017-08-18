@@ -1,12 +1,8 @@
-package com.comlu.projecthj.game.objects.entity.player;
+package com.comlu.projecthj.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
-import com.comlu.projecthj.game.GameObject;
-import com.comlu.projecthj.game.Handler;
-import com.comlu.projecthj.id.ID;
 
 public class Wizard extends GameObject {
 
@@ -20,6 +16,8 @@ public class Wizard extends GameObject {
 	public void tick() {
 		x += vX;
 		y += vY;
+		
+		collision();
 		
 		if (handler.isUp()) vY = -1f;
 		else if (!handler.isDown()) vY = 0;
@@ -35,7 +33,11 @@ public class Wizard extends GameObject {
 
 		if (handler.isLeft() && handler.isRight()) vX = 0;
 		if (handler.isUp() && handler.isDown()) vY = 0;
-		
+				
+	}
+	
+	private void collision() {
+		for(int i = )
 	}
 
 	public void render(Graphics g) {

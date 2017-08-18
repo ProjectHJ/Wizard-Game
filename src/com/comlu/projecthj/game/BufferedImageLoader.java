@@ -1,4 +1,4 @@
-package com.comlu.projecthj.ImageLoader;
+package com.comlu.projecthj.game;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

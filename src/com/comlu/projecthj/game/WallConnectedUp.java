@@ -1,11 +1,8 @@
-package com.comlu.projecthj.game.objects;
+package com.comlu.projecthj.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
-import com.comlu.projecthj.game.GameObject;
-import com.comlu.projecthj.id.ID;
 
 public class WallConnectedUp extends GameObject {
 	

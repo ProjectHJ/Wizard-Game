@@ -7,15 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import com.comlu.projecthj.ImageLoader.BufferedImageLoader;
-import com.comlu.projecthj.game.objects.Block;
-import com.comlu.projecthj.game.objects.WallConnectedRight;
-import com.comlu.projecthj.game.objects.WallConnectedUp;
-import com.comlu.projecthj.game.objects.camera.Camera;
-import com.comlu.projecthj.game.objects.entity.player.Wizard;
-import com.comlu.projecthj.id.ID;
-import com.comlu.projecthj.window.Window;
-
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,8 +25,7 @@ public class Game extends Canvas implements Runnable {
 
 	private BufferedImage level = null;
 
-	private static float width = 960, height = 540;
-
+	public static float width = 960, height = width / 16 * 9;
 
 	public Game() {
 		new Window((int) width, (int) height, TITLE, this);
@@ -51,9 +41,18 @@ public class Game extends Canvas implements Runnable {
 		loadLevel(level);
 	}
 
+	public void sleep() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void start() {
 		isRunning = true;
 		thread = new Thread(this);
+
 		thread.start();
 	}
 
@@ -87,8 +86,6 @@ public class Game extends Canvas implements Runnable {
 			frames++;
 			if (System.currentTimeMillis() - timer > 1000) {
 				System.out.println("Frames: " + frames + " Running: " + isRunning);
-				if (frames >= 60)
-					frames = 60;
 				FRAMES = frames;
 				timer += 1000;
 				frames = 0;
@@ -111,24 +108,24 @@ public class Game extends Canvas implements Runnable {
 
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, (int) width, (int) height);
-		
+
 		g2d.translate(-camera.getX(), -camera.getY());
 
 		handler.render(g);
 
 		g2d.translate(camera.getX(), camera.getY());
-		
+
 		g.dispose();
 		bs.show();
 	}
-	
+
 	public void tick() {
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player) {
 				camera.tick(handler.object.get(i));
 			}
 		}
-		
+
 		handler.tick();
 	}
 
@@ -145,7 +142,7 @@ public class Game extends Canvas implements Runnable {
 
 				switch (RED) {
 				case 255:
-					handler.addObject(new Block(xx * 32, yy * 32, ID.Block));
+					handler.addObject(new Wall(xx * 32, yy * 32, ID.Wall));
 					break;
 				case 190:
 					handler.addObject(new WallConnectedRight(xx * 32, yy * 32, ID.Wall_Connected_Right));
@@ -154,11 +151,11 @@ public class Game extends Canvas implements Runnable {
 					handler.addObject(new WallConnectedUp(xx * 32, yy * 32, ID.Wall_Connected_Up));
 					break;
 				}
-				
+
 				switch (GREEN) {
-				
+
 				}
-				
+
 				switch (BLUE) {
 				case 255:
 					handler.addObject(new Wizard(xx * 32, yy * 32, ID.Player, handler));
@@ -166,7 +163,7 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		new Game();
 	}

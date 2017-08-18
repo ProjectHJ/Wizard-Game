@@ -1,7 +1,4 @@
-package com.comlu.projecthj.game.objects.camera;
-
-import com.comlu.projecthj.game.Game;
-import com.comlu.projecthj.game.GameObject;
+package com.comlu.projecthj.game;
 
 public class Camera {
 
@@ -15,8 +12,8 @@ public class Camera {
 	}
 
 	public void tick(GameObject object) {
-		x += ((object.getX() - x) - ((960) / 2) + 48) * 0.05f;
-		y += ((object.getY() - y) - ((540) / 2) + 32) * 0.05f;
+		x += (((object.getX() - x) - ((960) / 2) + 48) * 0.05f);
+		y += (((object.getY() - y) - ((540) / 2) + 32) * 0.05f);
 
 		if (x <= 0)
 			x = 0;

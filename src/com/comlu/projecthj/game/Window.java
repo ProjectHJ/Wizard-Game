@@ -1,10 +1,8 @@
-package com.comlu.projecthj.window;
+package com.comlu.projecthj.game;
 
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-
-import com.comlu.projecthj.game.Game;
 
 public class Window {
 	

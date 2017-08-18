@@ -3,8 +3,6 @@ package com.comlu.projecthj.game;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.comlu.projecthj.id.ID;
-
 public abstract class GameObject {
 
 	protected int x, y;

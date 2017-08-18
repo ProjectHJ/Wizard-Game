@@ -1,8 +1,9 @@
-package com.comlu.projecthj.id;
+package com.comlu.projecthj.game;
 
 public enum ID {
 	Player(),
-	Block(),
+	Box(),
+	Wall(),
 	Crate(),
 	Bullet(),
 	Wall_Connected_Up(),

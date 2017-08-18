@@ -1,15 +1,12 @@
-package com.comlu.projecthj.game.objects;
+package com.comlu.projecthj.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.comlu.projecthj.game.GameObject;
-import com.comlu.projecthj.id.ID;
+public class Wall extends GameObject {
 
-public class WallConnectedRight extends GameObject {
-
-	public WallConnectedRight(int x, int y, ID id) {
+	public Wall(int x, int y, ID id) {
 		super(x, y, id);
 	}
 
@@ -18,10 +15,10 @@ public class WallConnectedRight extends GameObject {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(new Color(100, 100, 100));
-		g.fillRect(x + 4, y + 4, 24, 24);
 		g.setColor(new Color(115, 115, 115));
-		g.fillRect(x, y + 7, 32, 18);
+		g.fillRect(x, y, 32, 32);
+		g.setColor(new Color(120, 120, 120));
+		g.fillRect(x + 4, y + 4, 24, 24);
 		g.setColor(new Color(125, 125, 125));
 		g.fillRect(x + 8, y + 8, 16, 16);
 	}
