@@ -37,7 +37,16 @@ public class Wizard extends GameObject {
 	}
 	
 	private void collision() {
-		for(int i = )
+		for(int i = 0; i < handler.object.size(); i++) {
+			GameObject tempObj = handler.object.get(i);
+			
+			if (tempObj.getId() == ID.Wall || tempObj.getId() == ID.Wall_Connected_Right || tempObj.getId() == ID.Wall_Connected_Up) {
+				if (getBounds().intersects(tempObj.getBounds())) {
+					x += vX * -1;
+					y += vY * -1;
+				}
+			}
+		}
 	}
 
 	public void render(Graphics g) {
