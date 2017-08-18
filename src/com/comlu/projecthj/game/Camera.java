@@ -12,17 +12,17 @@ public class Camera {
 	}
 
 	public void tick(GameObject object) {
-		x += (((object.getX() - x) - ((960) / 2) + 48) * 0.05f);
-		y += (((object.getY() - y) - ((540) / 2) + 32) * 0.05f);
+		x += (((object.getX() - x) - ((960) / 2) + 48) * 0.02f);
+		y += (((object.getY() - y) - ((540) / 2) + 32) * 0.02f);
 
 		if (x <= 0)
 			x = 0;
-		if (x >= 960 - 90)
-			x = 960 - 90;
+		if (x >= 3142)
+			x = 3142;
 		if (y <= 0)
 			y = 0;
-		if (y >= 540 - 155)
-			y = 540 - 155;
+		if (y >= 0)
+			y = 0;
 	}
 
 	public float getX() {
