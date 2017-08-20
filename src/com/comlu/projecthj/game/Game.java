@@ -11,7 +11,7 @@ public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static int MAJOR_VERSION = 1, BUILD_VERSION = 1, MINOR_VERSION = 0, FRAMES = 0;
+	private static int MAJOR_VERSION = 1, MINOR_VERSION = 0, BUILD_VERSION = 2, FRAMES = 0;
 
 	private static String BUILD = "Alpha";
 	private static String NAME = "Wizard Game";

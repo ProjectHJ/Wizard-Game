@@ -43,7 +43,6 @@ public class Wizard extends GameObject {
 			vX = 0;
 		if (handler.isUp() && handler.isDown())
 			vY = 0;
-
 	}
 
 	private void collision() {
