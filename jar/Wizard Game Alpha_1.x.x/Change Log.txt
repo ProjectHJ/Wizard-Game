@@ -1,0 +1,12 @@
+Version Alpha_1.0.1	
+	8/17/2017 --- Created Wizard Game
+	8/17/2017 --- Added connecting walls and basic Character (Wizard)
+
+Version Alpha_1.0.2
+	8/19/2017 --- Changed Sprite for "Wizard"
+	8/19/2017 --- Changed FPS from 60 to 45 due to wizard moving too fast
+					(May change back if game moves too slow)
+	8/19/2017 --- Added Collision System
+	
+Version Alpha_1.0.3
+---
