@@ -15,8 +15,8 @@ public class WallConnectedUp extends GameObject {
 	}
 
 	public void render(Graphics g) {
-		//g.setColor(new Color(50, 50, 50));
-		//g.fillRect(x, y, 32, 32);
+		g.setColor(new Color(50, 50, 50));
+		g.fillRect(x, y, 32, 32);
 		g.setColor(new Color(100, 100, 100));
 		g.fillRect(x + 4, y + 4, 24, 24);
 		g.setColor(new Color(115, 115, 115));

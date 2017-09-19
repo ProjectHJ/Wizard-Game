@@ -5,27 +5,27 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class Handler {
-	
+
 	LinkedList<GameObject> object = new LinkedList<GameObject>();
-	
+
 	private boolean up = false, down = false, right = false, left = false;
-		
+
 	public void tick() {
-		for(int i = 0; i < object.size(); i++) {
+		for (int i = 0; i < object.size(); i++) {
 			GameObject tempObj = object.get(i);
 
 			tempObj.tick();
 		}
 	}
-	
+
 	public void render(Graphics g) {
-		for(int i = 0; i < object.size(); i++) {
+		for (int i = 0; i < object.size(); i++) {
 			GameObject tempObj = object.get(i);
-			
+
 			tempObj.render(g);
 		}
 	}
-	
+
 	public void loadLevel(BufferedImage image) {
 		int w = image.getWidth();
 		int h = image.getHeight();
@@ -50,7 +50,12 @@ public class Handler {
 				}
 
 				switch (GREEN) {
-
+				case 255:
+					addObject(new Cube(xx * 32, yy * 32, ID.Enemy, this));
+					break;
+				//case 116:
+					//addObject(new Floor(xx * 32, yy * 32, ID.Floor));
+					//break;
 				}
 
 				switch (BLUE) {
@@ -60,17 +65,17 @@ public class Handler {
 			}
 		}
 	}
-	
+
 	public void addObject(GameObject tempObj) {
 		object.add(tempObj);
 		System.out.println("Adding Objects : " + object.size());
 	}
-	
+
 	public void remObject(GameObject tempObj) {
 		object.remove(tempObj);
 		System.out.println("Removing Objects : " + object.size());
 	}
-	
+
 	public boolean isUp() {
 		return up;
 	}

@@ -1,12 +1,29 @@
 Version Alpha_1.0.1	
 	8/17/2017 --- Created Wizard Game
-	8/17/2017 --- Added connecting walls and basic Character (Wizard)
+	8/17/2017 --- Added:
+					Connecting Walls,
+					Basic Character (Wizard)
 
 Version Alpha_1.0.2
-	8/19/2017 --- Changed Sprite for "Wizard"
-	8/19/2017 --- Changed FPS from 60 to 45 due to wizard moving too fast
+	8/19/2017 --- Changed:
+					Sprite for "Wizard"
+	8/19/2017 --- Changed:
+					FPS from 60 to 45 due to wizard moving too fast,
 					(May change back if game moves too slow)
-	8/19/2017 --- Added Collision System
+	8/19/2017 --- Added:
+					Collision System
 	
 Version Alpha_1.0.3
----
+	8/21/2017 --- Reverted to old sprite for Wizard,
+					 Too many collision errors with new wall collision box.
+	9/06/2017 --- Added:
+					Basic Enemy 
+					Enemy Collision System, 
+					Added Projectile System,
+					Basic Enemy AI,
+					Enemy Health System
+					Player Speed Variable
+					
+				  Changed:
+				  	Map (x40 Because I can't seem to 
+				  		make a halfway decent map)

@@ -1,0 +1,12 @@
+<entities>
+	<entity id="Cube">
+		<name>Cube</name>
+		<health>100</health>
+		<maxHealth>100</maxHealth>
+	</entity>
+	<entity id="Player">
+		<name>Wizard</name>
+		<health>100</health>
+		<maxHealth>100</maxHealth>
+	</entity>
+</entities>

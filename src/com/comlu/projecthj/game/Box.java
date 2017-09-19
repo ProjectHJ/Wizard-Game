@@ -10,11 +10,11 @@ public class Box extends GameObject {
 		super(x, y, id);
 	}
 
-	public void tick() {	
+	public void tick() {
 		x += vX;
 		y += vY;
 	}
-	
+
 	public void render(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(x, y, 32, 32);

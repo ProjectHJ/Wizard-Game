@@ -7,11 +7,13 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import com.comlu.projecthj.spalsh.Splash;
+
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static int MAJOR_VERSION = 1, MINOR_VERSION = 0, BUILD_VERSION = 2, FRAMES = 0;
+	private static int MAJOR_VERSION = 1, MINOR_VERSION = 0, BUILD_VERSION = 3, FRAMES = 0;
 
 	private static String BUILD = "Alpha";
 	private static String NAME = "Wizard Game";
@@ -22,10 +24,11 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private Handler handler;
 	private Camera camera;
-
+	private GameObject obj;
+	private Splash splash;
 	private BufferedImage level = null;
 
-	public static float width = 960, height = width / 16 * 9;
+	public static float width = 960, height = (width / 16 * 9) + 1;
 
 	public Game() {
 		new Window((int) width, (int) height, TITLE, this);
@@ -34,6 +37,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		camera = new Camera(0, 0);
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(new MouseInput(handler, camera));
 
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/levels/level_1.png");
@@ -68,8 +72,8 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		this.requestFocus();
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 45.0;
-		double ns = 100000000 / amountOfTicks;
+		double amountOfTicks = 60.0;
+		double ns = 300000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
@@ -114,6 +118,10 @@ public class Game extends Canvas implements Runnable {
 		handler.render(g);
 
 		g2d.translate(camera.getX(), camera.getY());
+
+		g.setColor(Color.WHITE);
+		g.drawString("Frames: " + FRAMES, 0, 10);
+		g.drawString("Objects: " + handler.object.size(), 0, 20);
 
 		g.dispose();
 		bs.show();
